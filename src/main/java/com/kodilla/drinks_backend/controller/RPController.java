@@ -2,7 +2,7 @@ package com.kodilla.drinks_backend.controller;
 
 import com.kodilla.drinks_backend.mapper.RPMapper;
 import com.kodilla.drinks_backend.recipePuppyAPI.RPFacade;
-import com.kodilla.drinks_backend.recipePuppyAPI.domain.ProposedIngredientsDto;
+import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredientsDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

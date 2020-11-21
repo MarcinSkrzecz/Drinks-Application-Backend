@@ -3,6 +3,7 @@ package com.kodilla.drinks_backend.mapper;
 import com.kodilla.drinks_backend.domain.comment.Comment;
 import com.kodilla.drinks_backend.domain.comment.CommentDto;
 import com.kodilla.drinks_backend.domain.comment.CommentDto_Create;
+import com.kodilla.drinks_backend.domain.comment.CommentDto_Update;
 import com.kodilla.drinks_backend.domain.drink.DrinkDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +38,7 @@ public class CommentMapper {
                     comment.getUsername(),
                     comment.getComment(),
                     comment.getRate(),
+                    comment.getLikes(),
                     comment.getCreationDate());
         }
     }
@@ -53,5 +55,13 @@ public class CommentMapper {
                 commentDto_create.getUsername(),
                 commentDto_create.getComment(),
                 commentDto_create.getRate());
+    }
+
+    public Comment mapToComment_Update(final CommentDto_Update commentDto_update) {
+        return new Comment(
+                commentDto_update.getId(),
+                drinkDao.findById(commentDto_update.getDrinkId()).get(),
+                commentDto_update.getComment(),
+                commentDto_update.getRate());
     }
 }

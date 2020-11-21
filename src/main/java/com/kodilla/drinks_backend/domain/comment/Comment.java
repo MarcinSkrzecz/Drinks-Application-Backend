@@ -33,6 +33,9 @@ public class Comment {
     @Column(name = "RATE")
     private int rate;
 
+    @Column(name = "LIKES")
+    private int likes = 0;
+
     @Column(name = "CREATION_DATE")
     private LocalDate creationDate;
 
@@ -45,6 +48,13 @@ public class Comment {
     public Comment(Drink drink, String username, String comment, int rate) {
         this.drink = drink;
         this.username = username;
+        this.comment = comment;
+        this.rate = rate;
+    }
+
+    public Comment(Long id, Drink drink, String comment, int rate) {
+        this.id = id;
+        this.drink = drink;
         this.comment = comment;
         this.rate = rate;
     }

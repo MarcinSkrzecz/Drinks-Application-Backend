@@ -11,12 +11,11 @@ import java.util.stream.Collectors;
 
 @Service
 public class RatingService {
+
     @Autowired
     private RatingDao ratingDao;
-
     @Autowired
     private CommentService commentService;
-
 
     public List<Rating> getAllRatings() {
         return ratingDao.findAll();

@@ -15,6 +15,8 @@ public class CommentService {
     private CommentDao commentDao;
     @Autowired
     private RatingService ratingService;
+    @Autowired
+    private DrinkService drinkService;
 
     public List<Comment> getAllComments() {
         return commentDao.findAll();
@@ -27,10 +29,10 @@ public class CommentService {
     }
 
     public void createComment(final Comment comment) {
-        Comment createComment = comment;
         comment.setCreationDate(LocalDate.now());
         commentDao.save(comment);
         ratingService.autoRatingUpdate(comment.getDrink().getId());
+        drinkService.shouldSendDrinkToTrelloAndSendEmail(comment.getDrink().getId());
     }
 
     public Comment updateComment(Comment comment) {
@@ -39,17 +41,13 @@ public class CommentService {
         if (commentDbRecord.isPresent()) {
             Comment commentForUpdate = commentDbRecord.get();
 
-            commentForUpdate.setDrink(comment.getDrink());
-            commentForUpdate.setUsername(comment.getUsername());
             commentForUpdate.setComment(comment.getComment());
             commentForUpdate.setRate(comment.getRate());
-            commentForUpdate.setCreationDate(comment.getCreationDate());
-
-            deleteComment(comment.getId());
 
             commentDao.save(commentForUpdate);
 
             ratingService.autoRatingUpdate(comment.getDrink().getId());
+            drinkService.shouldSendDrinkToTrelloAndSendEmail(comment.getDrink().getId());
             return commentForUpdate;
         } else throw new IllegalArgumentException("Comment not found");
     }
@@ -58,5 +56,18 @@ public class CommentService {
         Long drinkId = getComment(id).getDrink().getId();
         commentDao.deleteById(id);
         ratingService.autoRatingUpdate(drinkId);
+    }
+
+    public void likeComment(Long id) {
+        Optional<Comment> commentDbRecord = commentDao.findById(id);
+
+        if (commentDbRecord.isPresent()) {
+            Comment commentToLike = commentDbRecord.get();
+            int actualVotes = commentToLike.getLikes();
+            int updatedLikes = actualVotes + 1;
+            commentToLike.setLikes(updatedLikes);
+
+            commentDao.save(commentToLike);
+        } else throw new IllegalArgumentException("Comment not found");
     }
 }

@@ -1,4 +1,4 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.domain;
+package com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -1,8 +1,9 @@
 package com.kodilla.drinks_backend.recipePuppyAPI.service;
 
-import com.kodilla.drinks_backend.email_services.EmailScheduler;
-import com.kodilla.drinks_backend.recipePuppyAPI.domain.ProposedIngredients;
-import com.kodilla.drinks_backend.recipePuppyAPI.domain.ProposedIngredientsDao;
+import com.kodilla.drinks_backend.email_services.EmailSender;
+import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredients;
+import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredientsDao;
+import com.kodilla.drinks_backend.service.TrelloService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class RPService {
     @Autowired
     private ProposedIngredientsDao proposedIngredientsDao;
     @Autowired
-    private EmailScheduler emailScheduler;
+    private TrelloService trelloService;
 
     //To będzie jedna z list jako zwykłe propozycje - w vaadinie ta lista po kliknieciu pola bedzie jako vote
     //Plus fasada do filtrowania by to co juz jest w drinkach sie tu nie znajdowalo
@@ -56,7 +57,7 @@ public class RPService {
             proposedIngredient.setVotes(updatedVotes);
             if (updatedVotes == 5) {
                 proposedIngredient.setStatus("Send to create Drink");
-                emailScheduler.sendEmailAboutIngredientProposedToCreateDrink(proposedIngredient.getId());
+                trelloService.sendProposedIngredientDataToTrello(proposedIngredient.getId());
             }
             proposedIngredientsDao.save(proposedIngredient);
         }

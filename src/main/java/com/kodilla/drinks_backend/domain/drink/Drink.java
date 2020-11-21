@@ -41,17 +41,21 @@ public class Drink {
     @Column(name = "CREATION_DATE")
     private LocalDate creationDate = LocalDate.now();
 
-
-    //Comments
     @OneToMany(cascade = CascadeType.ALL,
             mappedBy = "drink", orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
 
-    //Rating
     @OneToOne(mappedBy = "drink", cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "DRINK_ID", referencedColumnName = "DRINK_ID")
     private Rating rating;
 
+    //Create
+    public Drink(String username, String drinkName, String recipe, String ingredients) {
+        this.username = username;
+        this.drinkName = drinkName;
+        this.recipe = recipe;
+        this.ingredients = ingredients;
+    }
 
     public Drink(Long id, String username, String drinkName, String recipe, String ingredients) {
         this.id = id;
@@ -61,11 +65,47 @@ public class Drink {
         this.ingredients = ingredients;
     }
 
-    //Create
-    public Drink(String username, String drinkName, String recipe, String ingredients) {
-        this.username = username;
-        this.drinkName = drinkName;
-        this.recipe = recipe;
-        this.ingredients = ingredients;
+    @Override
+    public String toString() {
+        return "Drink {" + "\n" +
+                "- Drink id: " + id + ",\n" +
+                "- Created by: " + username + ",\n" +
+                "- Drink Name: " + drinkName + ",\n" +
+                "- Recipe: " + recipe + ",\n" +
+                "- Ingredients: " + ingredients + "\n" +
+                '}';
+    }
+
+    public static class DrinkBuilder {
+        private Long id;
+        private String username;
+        private String drinkName;
+        private String recipe;
+        private String ingredients;
+
+        public DrinkBuilder id(Long id) {
+            this.id = id;
+            return this;
+        }
+        public DrinkBuilder username(String username) {
+            this.username = username;
+            return this;
+        }
+        public DrinkBuilder drinkName(String drinkName) {
+            this.drinkName = drinkName;
+            return this;
+        }
+        public DrinkBuilder recipe(String recipe) {
+            this.recipe = recipe;
+            return this;
+        }
+        public DrinkBuilder ingredients(String ingredients) {
+            this.ingredients = ingredients;
+            return this;
+        }
+
+        public Drink build() {
+            return new Drink(id, username, drinkName, recipe, ingredients);
+        }
     }
 }

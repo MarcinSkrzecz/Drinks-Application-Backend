@@ -25,7 +25,6 @@ public class IngredientService {
         } else throw new IllegalArgumentException("Ingredient not found");
     }
 
-
     public void regenerateIngredients_DrinkCreate(String ingredients)  {
         ingredientServiceBackground.regenerateIngredients_DrinkCreate(ingredients);
     }
@@ -36,9 +35,5 @@ public class IngredientService {
 
     public void regenerateIngredients_DrinkDelete(String ingredients) {
         ingredientServiceBackground.regenerateIngredients_DrinkDelete(ingredients);
-    }
-
-    public void deleteIngredient(long id) {
-        ingredientDao.deleteById(id);
     }
 }

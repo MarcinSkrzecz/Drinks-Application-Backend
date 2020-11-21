@@ -1,6 +1,6 @@
 package com.kodilla.drinks_backend.recipePuppyAPI;
 
-import com.kodilla.drinks_backend.recipePuppyAPI.domain.ProposedIngredients;
+import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredients;
 import com.kodilla.drinks_backend.recipePuppyAPI.service.RPService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

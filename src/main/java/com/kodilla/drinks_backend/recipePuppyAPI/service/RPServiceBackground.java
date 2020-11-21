@@ -7,15 +7,10 @@ import com.kodilla.drinks_backend.service.DrinkService;
 import com.kodilla.drinks_backend.service.IngredientServiceBackground;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestClientException;
 
-import java.net.URI;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import static java.util.Optional.ofNullable;
 
 @Service
 public class RPServiceBackground {

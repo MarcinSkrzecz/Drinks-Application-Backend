@@ -1,4 +1,4 @@
-package com.kodilla.drinks_backend.trelloApiSaveData;
+package com.kodilla.drinks_backend.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,6 +19,9 @@ public class TrelloConfig {
     @Value("${trello.app.DrinkApplicationTabRating}")
     private String trelloDrinkAppTabRating;
 
-    @Value("${trello.app.DrinkApplicationTabPropose}")
-    private String trelloDrinkAppTabPropose;
+    @Value("${trello.app.DrinkApplicationProposedIngredients}")
+    private String trelloDrinkApplicationProposedIngredients;
+
+    @Value("${trello.app.DrinkApplicationContactUsMessage}")
+    private String trelloDrinkApplicationContactUsMessage;
 }

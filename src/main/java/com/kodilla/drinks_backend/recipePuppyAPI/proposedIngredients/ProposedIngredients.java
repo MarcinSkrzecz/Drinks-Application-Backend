@@ -1,6 +1,5 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.domain;
+package com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients;
 
-import com.sun.org.apache.xalan.internal.xsltc.compiler.util.StringStack;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,6 +32,7 @@ public class ProposedIngredients {
 
     @Column(name = "STATUS")
     private String status = "Collecting votes";
+    //Collecting votes -> Votes collected - WIP -> Completed
 
     @Column(name = "IS_ADDED_TO_RECIPES")
     private boolean isAddedToRecipes = false;

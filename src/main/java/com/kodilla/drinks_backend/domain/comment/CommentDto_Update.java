@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class CommentDto_Create {
+public class CommentDto_Update {
+    private Long id;
     private Long drinkId;
-    private String username;
     private String comment;
     private int rate;
 }

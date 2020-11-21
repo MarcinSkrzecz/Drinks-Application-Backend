@@ -13,12 +13,16 @@ import java.util.stream.Collectors;
 public class DrinkMapper {
 
     public Drink mapToDrink(final DrinkDto drinkDto) {
-        return new Drink(
-                drinkDto.getId(),
-                drinkDto.getUsername(),
-                drinkDto.getDrinkName(),
-                drinkDto.getRecipe(),
-                drinkDto.getIngredients());
+        Drink drink = new Drink();
+        drink.setUsername(drinkDto.getUsername());
+        drink.setDrinkName(drinkDto.getDrinkName());
+        drink.setRecipe(drinkDto.getRecipe());
+        drink.setIngredients(drinkDto.getIngredients());
+
+        if (drinkDto.getId() != null) {
+            drink.setId(drinkDto.getId());
+        }
+        return drink;
     }
 
     public DrinkDto mapToDrinkDto(final Drink drink) {

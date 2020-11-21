@@ -1,14 +1,19 @@
 package com.kodilla.drinks_backend.service;
 
+import com.kodilla.drinks_backend.domain.comment.Comment;
+import com.kodilla.drinks_backend.domain.comment.CommentDao;
+import com.kodilla.drinks_backend.domain.comment.CommentDto;
 import com.kodilla.drinks_backend.domain.drink.Drink;
 import com.kodilla.drinks_backend.domain.rating.Rating;
 import com.kodilla.drinks_backend.domain.drink.DrinkDao;
+import com.kodilla.drinks_backend.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class DrinkService {
@@ -20,6 +25,8 @@ public class DrinkService {
     private IngredientServiceBackground ingredientServiceBackground;
     @Autowired
     private RatingService ratingService;
+    @Autowired
+    private TrelloService trelloService;
 
     public List<Drink> getAllDrinks() {
         return drinkDao.findAll();
@@ -81,5 +88,23 @@ public class DrinkService {
             }
         }
         return separatedIngredients;
+    }
+
+    public void shouldSendDrinkToTrelloAndSendEmail(Long drinkId) {
+        Drink drink = getDrink(drinkId);
+
+        boolean isSend = drink.isSend();
+
+        int rating = Integer.parseInt(drink.getRating().getRating());
+
+        int numberOfComments = drink.getComments().size();
+
+        if (!isSend & rating > 6 & numberOfComments > 5) {
+            drink.setSend(true);
+            drinkDao.save(drink);
+
+            trelloService.sendRatedDataToTrello(drinkId);
+            trelloService.sendRatedDataToTrello(drinkId);
+        }
     }
 }

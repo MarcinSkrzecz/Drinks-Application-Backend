@@ -1,7 +1,7 @@
 package com.kodilla.drinks_backend.mapper;
 
-import com.kodilla.drinks_backend.recipePuppyAPI.domain.ProposedIngredients;
-import com.kodilla.drinks_backend.recipePuppyAPI.domain.ProposedIngredientsDto;
+import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredients;
+import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredientsDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
