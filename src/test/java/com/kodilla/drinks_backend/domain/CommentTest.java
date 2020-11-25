@@ -47,14 +47,6 @@ public class CommentTest {
 
     @Test
     public void updateDeleteCommentWithDrink() {
-        List<Drink> drinks = drinkDao.findAll();
-        List<Comment> comments = commentDao.findAll();
-        if (drinks.size() > 0) {
-            drinkDao.deleteAll();
-        }
-        if (comments.size() > 0) {
-            commentDao.deleteAll();
-        }
         //Given
         Drink drink = new Drink();
         Comment comment = new Comment("Test_Username","Test_Comment",10);

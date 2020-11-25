@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class CommentMapper {
-
     @Autowired
     private DrinkDao drinkDao;
 
@@ -25,9 +24,10 @@ public class CommentMapper {
                 drinkDao.findById(commentDto.getDrinkId()).get(),
                 commentDto.getUsername(),
                 commentDto.getComment(),
-                commentDto.getRate());
+                commentDto.getRate(),
+                commentDto.getLikes(),
+                commentDto.getCreationDate());
     }
-
     public CommentDto mapToCommentDto(final Comment comment) {
         if (comment.getId() == null) {
             throw new IllegalArgumentException("Comment not exist");
@@ -42,13 +42,11 @@ public class CommentMapper {
                     comment.getCreationDate());
         }
     }
-
     public List<CommentDto> mapToCommentDtoList(final List<Comment> comments) {
         return comments.stream()
                 .map(this::mapToCommentDto)
                 .collect(Collectors.toList());
     }
-
     public Comment mapToComment_Create(final CommentDto_Create commentDto_create) {
         return new Comment(
                 drinkDao.findById(commentDto_create.getDrinkId()).get(),
@@ -56,7 +54,6 @@ public class CommentMapper {
                 commentDto_create.getComment(),
                 commentDto_create.getRate());
     }
-
     public Comment mapToComment_Update(final CommentDto_Update commentDto_update) {
         return new Comment(
                 commentDto_update.getId(),

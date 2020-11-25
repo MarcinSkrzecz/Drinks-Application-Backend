@@ -1,6 +1,5 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients;
+package com.kodilla.drinks_backend.domain.RP.proposedIngredients;
 
-import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredients;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;

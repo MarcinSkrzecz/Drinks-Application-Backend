@@ -5,7 +5,6 @@ import com.kodilla.drinks_backend.domain.drink.DrinkDto_Update;
 import com.kodilla.drinks_backend.domain.drink.DrinkDto_Create;
 import com.kodilla.drinks_backend.facade.DrinkFacade;
 import com.kodilla.drinks_backend.mapper.DrinkMapper;
-import com.kodilla.drinks_backend.service.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,8 +12,9 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
+@CrossOrigin("*")
 @RestController
-@RequestMapping("/v1/drink")
+@RequestMapping("/v1")
 public class DrinkController {
 
     @Autowired

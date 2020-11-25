@@ -1,7 +1,7 @@
-package com.kodilla.drinks_backend.trelloApiSaveData;
+package com.kodilla.drinks_backend.client;
 
 import com.kodilla.drinks_backend.config.TrelloConfig;
-import com.kodilla.drinks_backend.domain.TrelloMessageDto;
+import com.kodilla.drinks_backend.domain.trello.TrelloMessageDto;
 import com.kodilla.drinks_backend.mapper.TrelloMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

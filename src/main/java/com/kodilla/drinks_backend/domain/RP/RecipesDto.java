@@ -1,4 +1,4 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.domain;
+package com.kodilla.drinks_backend.domain.RP;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
@@ -15,4 +15,6 @@ public class RecipesDto {
     private String ingredients;
     @JsonProperty("thumbnail")
     private String thumbnail;
+
+    public RecipesDto() {}
 }

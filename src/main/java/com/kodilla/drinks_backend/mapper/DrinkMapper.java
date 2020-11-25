@@ -24,7 +24,6 @@ public class DrinkMapper {
         }
         return drink;
     }
-
     public DrinkDto mapToDrinkDto(final Drink drink) {
         if (drink.getId() == null) {
             throw new IllegalArgumentException("Drink not exist");
@@ -38,13 +37,11 @@ public class DrinkMapper {
                     drink.getCreationDate());
         }
     }
-
     public List<DrinkDto> mapToDrinkDtoList(final List<Drink> drinks) {
         return drinks.stream()
                 .map(this::mapToDrinkDto)
                 .collect(Collectors.toList());
     }
-
     public Drink mapToDrink_Create(final DrinkDto_Create drinkDto_create) {
         return new Drink(
             drinkDto_create.getUsername(),
@@ -52,7 +49,6 @@ public class DrinkMapper {
             drinkDto_create.getRecipe(),
             drinkDto_create.getIngredients());
     }
-
     public Drink mapToDrink_Update(final DrinkDto_Update drinkDto_update) {
         if (drinkDto_update.getId() == null) {
             throw new IllegalArgumentException("Drink not exist");

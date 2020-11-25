@@ -1,6 +1,5 @@
 package com.kodilla.drinks_backend.domain.comment;
 
-import com.kodilla.drinks_backend.domain.comment.Comment;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

@@ -56,4 +56,17 @@ public class RatingService {
     public void deleteRating(long id) {
         ratingDao.deleteById(id);
     }
+
+    public double findRatingByDrinkId(Long drinkId) {
+        List<Rating> ratings = getAllRatings();
+        String ratingString = ratings.stream()
+                .filter(f -> f.getDrink().getId().equals(drinkId))
+                .collect(Collectors.toList()).get(0).getRating();
+        double ratingToSend = 0.0;
+
+        if (!ratingString.equals("Not rated yet, be first one!")) {
+            ratingToSend = Double.parseDouble(ratingString);
+        }
+        return ratingToSend;
+    }
 }

@@ -1,4 +1,4 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients;
+package com.kodilla.drinks_backend.domain.RP.proposedIngredients;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,8 +10,4 @@ public class ProposedIngredientsDto {
     private String description;
     private int votes;
     private String status;
-
-    public ProposedIngredientsDto(String description) {
-        this.description = description;
-    }
 }

@@ -1,6 +1,5 @@
 package com.kodilla.drinks_backend.domain.rating;
 
-import com.kodilla.drinks_backend.domain.rating.Rating;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

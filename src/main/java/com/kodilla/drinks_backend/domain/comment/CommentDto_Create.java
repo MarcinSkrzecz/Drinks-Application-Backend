@@ -9,5 +9,5 @@ public class CommentDto_Create {
     private Long drinkId;
     private String username;
     private String comment;
-    private int rate;
+    private Integer rate;
 }

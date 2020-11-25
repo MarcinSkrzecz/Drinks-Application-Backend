@@ -1,19 +1,16 @@
 package com.kodilla.drinks_backend.service;
 
-import com.kodilla.drinks_backend.domain.comment.Comment;
-import com.kodilla.drinks_backend.domain.comment.CommentDao;
-import com.kodilla.drinks_backend.domain.comment.CommentDto;
+import com.kodilla.drinks_backend.config.SendRatedDrinkConfig;
 import com.kodilla.drinks_backend.domain.drink.Drink;
+import com.kodilla.drinks_backend.domain.ingredients.Ingredient;
 import com.kodilla.drinks_backend.domain.rating.Rating;
 import com.kodilla.drinks_backend.domain.drink.DrinkDao;
-import com.kodilla.drinks_backend.mapper.CommentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class DrinkService {
@@ -22,11 +19,11 @@ public class DrinkService {
     @Autowired
     private IngredientService ingredientService;
     @Autowired
-    private IngredientServiceBackground ingredientServiceBackground;
-    @Autowired
     private RatingService ratingService;
     @Autowired
     private TrelloService trelloService;
+    @Autowired
+    private SendRatedDrinkConfig sendRatedDrinkConfig;
 
     public List<Drink> getAllDrinks() {
         return drinkDao.findAll();
@@ -72,22 +69,16 @@ public class DrinkService {
     }
 
     public List<String> getAllUsedIngredientsList() {
-        List<Drink> allDrinks = getAllDrinks();
-        int size = allDrinks.size();
-        List<String> separatedIngredients = new ArrayList<>();
+        List<Ingredient> allIngredients = ingredientService.getAllIngredients();
+        int size = allIngredients.size();
+        List<String> allIngredientsDescriptions = new ArrayList<>();
         if (size > 0) {
             for (int i = 0; i < size; i++) {
-                String ingredientToCorrect = allDrinks.get(i).getIngredients();
-                List<String> ingredients = ingredientServiceBackground.separateStringsAndCorrect(ingredientToCorrect);
-                int ingredientsSize = ingredients.size();
-                if (ingredientsSize > 0) {
-                    for (int j = 0; j < ingredientsSize; j++) {
-                        separatedIngredients.add(separatedIngredients.get(j));
-                    }
-                }
+                String ingredientToAdd = allIngredients.get(i).getDescription();
+                allIngredientsDescriptions.add(ingredientToAdd);
             }
         }
-        return separatedIngredients;
+        return allIngredientsDescriptions;
     }
 
     public void shouldSendDrinkToTrelloAndSendEmail(Long drinkId) {
@@ -95,15 +86,14 @@ public class DrinkService {
 
         boolean isSend = drink.isSend();
 
-        int rating = Integer.parseInt(drink.getRating().getRating());
+        double rating = ratingService.findRatingByDrinkId(drinkId);
 
         int numberOfComments = drink.getComments().size();
 
-        if (!isSend & rating > 6 & numberOfComments > 5) {
+        if (!isSend & rating > sendRatedDrinkConfig.getRatingToSendData() & numberOfComments > sendRatedDrinkConfig.getCommentsToSendData()) {
             drink.setSend(true);
             drinkDao.save(drink);
 
-            trelloService.sendRatedDataToTrello(drinkId);
             trelloService.sendRatedDataToTrello(drinkId);
         }
     }

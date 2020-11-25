@@ -1,5 +1,8 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients;
+package com.kodilla.drinks_backend.service;
 
+import com.kodilla.drinks_backend.config.ProposedIngredientsConfig;
+import com.kodilla.drinks_backend.domain.RP.proposedIngredients.ProposedIngredients;
+import com.kodilla.drinks_backend.domain.RP.proposedIngredients.ProposedIngredientsDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,8 +15,8 @@ public class ProposedIngredientsService {
 
     @Autowired
     private ProposedIngredientsDao proposedIngredientsDao;
-
-    private int votesToChangeStatus = 5;
+    @Autowired
+    private ProposedIngredientsConfig proposedIngredientsConfig;
 
     public List<ProposedIngredients> getAllIngredients() {
         List<ProposedIngredients> proposedIngredientsDB = proposedIngredientsDao.findAll();
@@ -53,7 +56,7 @@ public class ProposedIngredientsService {
         int votes = proposedIngredientsDB.getVotes();
         int votesActual = votes + 1;
 
-        if (votesActual == votesToChangeStatus) {
+        if (votesActual == proposedIngredientsConfig.getCountToChangeStatus()) {
             proposedIngredientsDB.setDescription("Votes collected - WIP");
         }
 

@@ -1,8 +1,8 @@
 package com.kodilla.drinks_backend.service;
 
 import com.kodilla.drinks_backend.email_services.EmailSender;
-import com.kodilla.drinks_backend.trelloApiSaveData.TrelloClient;
-import com.kodilla.drinks_backend.domain.TrelloMessageDto;
+import com.kodilla.drinks_backend.client.TrelloClient;
+import com.kodilla.drinks_backend.domain.trello.TrelloMessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

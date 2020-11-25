@@ -1,4 +1,4 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients;
+package com.kodilla.drinks_backend.domain.RP.proposedIngredients;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

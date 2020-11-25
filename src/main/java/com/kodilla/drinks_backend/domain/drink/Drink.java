@@ -35,7 +35,7 @@ public class Drink {
     @Column(name = "INGREDIENTS")
     private String ingredients;
 
-    @Column(name = "IS_SEND_TO_SELECTEDSIDRRRRRRRR")
+    @Column(name = "IS_SEND_TO_TRELLO")
     private boolean isSend = false;
 
     @Column(name = "CREATION_DATE")
@@ -49,7 +49,10 @@ public class Drink {
     @JoinColumn(name = "DRINK_ID", referencedColumnName = "DRINK_ID")
     private Rating rating;
 
-    //Create
+    public Drink(Long id) {
+        this.id = id;
+    }
+
     public Drink(String username, String drinkName, String recipe, String ingredients) {
         this.username = username;
         this.drinkName = drinkName;
@@ -63,6 +66,15 @@ public class Drink {
         this.drinkName = drinkName;
         this.recipe = recipe;
         this.ingredients = ingredients;
+    }
+
+    public Drink(Long id, String username, String drinkName, String recipe, String ingredients, LocalDate creationDate) {
+        this.id = id;
+        this.username = username;
+        this.drinkName = drinkName;
+        this.recipe = recipe;
+        this.ingredients = ingredients;
+        this.creationDate = creationDate;
     }
 
     @Override

@@ -1,19 +1,14 @@
 package com.kodilla.drinks_backend.email_services;
 
 import com.kodilla.drinks_backend.config.AdminConfig;
-import com.kodilla.drinks_backend.domain.comment.Comment;
 import com.kodilla.drinks_backend.domain.drink.Drink;
-import com.kodilla.drinks_backend.domain.comment.CommentDao;
 import com.kodilla.drinks_backend.domain.drink.DrinkDao;
-import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredients;
-import com.kodilla.drinks_backend.recipePuppyAPI.service.RPService;
+import com.kodilla.drinks_backend.domain.RP.proposedIngredients.ProposedIngredients;
+import com.kodilla.drinks_backend.service.RPService;
 import com.kodilla.drinks_backend.service.DrinkService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Component
 public class EmailSender {
@@ -71,7 +66,4 @@ public class EmailSender {
                 title + ". Message content - " + content + ".")
         );
     }
-
-
-
 }

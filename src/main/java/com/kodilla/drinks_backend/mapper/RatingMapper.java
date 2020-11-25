@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 @Component
 public class RatingMapper {
-
     @Autowired
     private DrinkDao drinkDao;
 
@@ -25,7 +24,6 @@ public class RatingMapper {
                     ratingDto.getRating());
         }
     }
-
     public RatingDto mapToRatingDto(final Rating rating) {
         if (rating.getId() == null) {
             throw new IllegalArgumentException("Rating not exist");
@@ -36,7 +34,6 @@ public class RatingMapper {
                     rating.getRating());
         }
     }
-
     public List<RatingDto> mapToRatingDtoList(final List<Rating> ratings) {
         return ratings.stream()
                 .map(this::mapToRatingDto)

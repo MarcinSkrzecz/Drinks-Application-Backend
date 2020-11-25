@@ -9,7 +9,6 @@ import java.util.List;
 
 @Component
 public class DrinkFacade {
-
     @Autowired
     private DrinkService drinkService;
 

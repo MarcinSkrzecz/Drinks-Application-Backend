@@ -1,16 +1,15 @@
 package com.kodilla.drinks_backend.mapper;
 
 import com.kodilla.drinks_backend.domain.drink.Drink;
-import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredients;
-import com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients.ProposedIngredientsService;
+import com.kodilla.drinks_backend.domain.RP.proposedIngredients.ProposedIngredients;
+import com.kodilla.drinks_backend.service.ProposedIngredientsService;
 import com.kodilla.drinks_backend.service.DrinkService;
-import com.kodilla.drinks_backend.domain.TrelloMessageDto;
+import com.kodilla.drinks_backend.domain.trello.TrelloMessageDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class TrelloMapper {
-
     @Autowired
     private DrinkService drinkService;
     @Autowired
@@ -33,7 +32,6 @@ public class TrelloMapper {
                 drink.toString()
         );
     }
-
     public TrelloMessageDto mapProposedIngredientDataToSend(Long proposedIngredientId) {
         ProposedIngredients proposedIngredientsDB = proposedIngredientsService.getIngredient(proposedIngredientId);
 

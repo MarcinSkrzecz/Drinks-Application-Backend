@@ -1,7 +1,7 @@
-package com.kodilla.drinks_backend.recipePuppyAPI.proposedIngredients;
+package com.kodilla.drinks_backend.mapper;
 
-import com.kodilla.drinks_backend.domain.drink.Drink;
-import com.kodilla.drinks_backend.domain.drink.DrinkDto;
+import com.kodilla.drinks_backend.domain.RP.proposedIngredients.ProposedIngredients;
+import com.kodilla.drinks_backend.domain.RP.proposedIngredients.ProposedIngredientsDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -18,7 +18,11 @@ public class ProposedIngredientsMapper {
                 proposedIngredientsDto.getStatus()
         );
     }
-
+    public ProposedIngredients mapToProposedIngredients_Create(final String proposedIngredient) {
+        return new ProposedIngredients(
+                proposedIngredient
+        );
+    }
     public ProposedIngredientsDto mapToProposedIngredientsDto(final ProposedIngredients proposedIngredients) {
         return new ProposedIngredientsDto(
                 proposedIngredients.getId(),
@@ -27,7 +31,6 @@ public class ProposedIngredientsMapper {
                 proposedIngredients.getStatus()
         );
     }
-
     public List<ProposedIngredientsDto> mapToProposedIngredientsDtoList(final List<ProposedIngredients> proposedIngredients) {
         return proposedIngredients.stream()
                 .map(this::mapToProposedIngredientsDto)

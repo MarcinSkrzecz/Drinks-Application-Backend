@@ -39,6 +39,10 @@ public class Comment {
     @Column(name = "CREATION_DATE")
     private LocalDate creationDate;
 
+    public Comment(Long id) {
+        this.id = id;
+    }
+
     public Comment(String username, String comment, int rate) {
         this.username = username;
         this.comment = comment;
@@ -73,6 +77,16 @@ public class Comment {
         this.username = username;
         this.comment = comment;
         this.rate = rate;
+        this.creationDate = creationDate;
+    }
+
+    public Comment(long id, Drink drink, String username, String comment, int rate, int likes, LocalDate creationDate) {
+        this.id = id;
+        this.drink = drink;
+        this.username = username;
+        this.comment = comment;
+        this.rate = rate;
+        this.likes = likes;
         this.creationDate = creationDate;
     }
 }

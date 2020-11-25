@@ -1,4 +1,4 @@
-package com.kodilla.drinks_backend.recipePuppyAPI;
+package com.kodilla.drinks_backend.config;
 
 import lombok.Getter;
 import org.springframework.beans.factory.annotation.Value;
